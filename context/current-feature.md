@@ -16,4 +16,4 @@
 
 ## History
 
-<!-- Keep this updated. Earliest to latest-->
+- 2026-03-20: Initial Next.js 16.2 and Tailwind CSS v4 setup with TypeScript
