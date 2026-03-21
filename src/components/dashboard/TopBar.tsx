@@ -1,13 +1,22 @@
 "use client";
 
-import { Search } from "lucide-react";
+import { Search, PanelLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import type { TopBarProps } from "@/types/dashboard";
 
-export function TopBar() {
+export function TopBar({ onToggleSidebar }: TopBarProps) {
   return (
     <header className="flex h-14 shrink-0 items-center justify-between border-b border-border bg-background px-4">
       <div className="flex items-center gap-2">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="h-8 w-8"
+          onClick={onToggleSidebar}
+        >
+          <PanelLeft className="h-5 w-5" />
+        </Button>
         <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary font-bold text-sm text-primary-foreground">
           D
         </div>
