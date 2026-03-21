@@ -24,14 +24,14 @@
 
 Developers scatter their essential resources across too many places:
 
-| Resource | Where it lives today |
-|---|---|
-| Code snippets | VS Code, Notion, Gists |
-| AI prompts | Chat history, random docs |
-| Context files | Buried in project folders |
-| Useful links | Browser bookmarks |
-| Commands | `.txt` files, bash history |
-| Templates | GitHub Gists, local folders |
+| Resource      | Where it lives today        |
+| ------------- | --------------------------- |
+| Code snippets | VS Code, Notion, Gists      |
+| AI prompts    | Chat history, random docs   |
+| Context files | Buried in project folders   |
+| Useful links  | Browser bookmarks           |
+| Commands      | `.txt` files, bash history  |
+| Templates     | GitHub Gists, local folders |
 
 **DevStash consolidates all of this into one place** — fast to access, powerful to search, and AI-enhanced for pro users.
 
@@ -39,28 +39,28 @@ Developers scatter their essential resources across too many places:
 
 ## Target Users
 
-| User Type | Core Need |
-|---|---|
-| **Everyday Developer** | Fast access to snippets, prompts, commands, links |
-| **AI-first Developer** | Organize prompts, contexts, workflows, system messages |
-| **Content Creator / Educator** | Store code blocks, explanations, course notes |
-| **Full-stack Builder** | Collect patterns, boilerplates, API examples |
+| User Type                      | Core Need                                              |
+| ------------------------------ | ------------------------------------------------------ |
+| **Everyday Developer**         | Fast access to snippets, prompts, commands, links      |
+| **AI-first Developer**         | Organize prompts, contexts, workflows, system messages |
+| **Content Creator / Educator** | Store code blocks, explanations, course notes          |
+| **Full-stack Builder**         | Collect patterns, boilerplates, API examples           |
 
 ---
 
 ## Tech Stack
 
-| Layer | Technology |
-|---|---|
-| **Framework** | [Next.js 16](https://nextjs.org/) / React 19 — SSR + API routes |
-| **Language** | TypeScript |
-| **Database** | [Neon](https://neon.tech/) (PostgreSQL, serverless) |
-| **ORM** | [Prisma 7](https://www.prisma.io/) — migrations only, never `db push` |
-| **Auth** | [NextAuth v5](https://authjs.dev/) — email/password + GitHub OAuth |
-| **File Storage** | [Cloudflare R2](https://developers.cloudflare.com/r2/) |
-| **AI** | OpenAI `gpt-4o-mini` |
-| **CSS** | [Tailwind CSS v4](https://tailwindcss.com/) + [shadcn/ui](https://ui.shadcn.com/) |
-| **Caching** | Redis (optional, TBD) |
+| Layer            | Technology                                                                        |
+| ---------------- | --------------------------------------------------------------------------------- |
+| **Framework**    | [Next.js 16](https://nextjs.org/) / React 19 — SSR + API routes                   |
+| **Language**     | TypeScript                                                                        |
+| **Database**     | [Neon](https://neon.tech/) (PostgreSQL, serverless)                               |
+| **ORM**          | [Prisma 7](https://www.prisma.io/) — migrations only, never `db push`             |
+| **Auth**         | [NextAuth v5](https://authjs.dev/) — email/password + GitHub OAuth                |
+| **File Storage** | [Cloudflare R2](https://developers.cloudflare.com/r2/)                            |
+| **AI**           | OpenAI `gpt-4o-mini`                                                              |
+| **CSS**          | [Tailwind CSS v4](https://tailwindcss.com/) + [shadcn/ui](https://ui.shadcn.com/) |
+| **Caching**      | Redis (optional, TBD)                                                             |
 
 > ⚠️ **DB Rule**: Never run `prisma db push` in any environment. Always generate and run migrations (`prisma migrate dev` / `prisma migrate deploy`).
 
@@ -262,6 +262,7 @@ model Tag {
 ### C. Search
 
 Full-text search across:
+
 - Item **title**
 - Item **content**
 - **Tags**
@@ -284,14 +285,14 @@ Full-text search across:
 - ➕ Add/remove items to/from multiple collections
 - 🔍 View which collections an item belongs to
 
-### F. AI Features *(Pro only)*
+### F. AI Features _(Pro only)_
 
-| Feature | Description |
-|---|---|
-| **Auto-tag** | Suggest relevant tags for an item automatically |
-| **AI Summary** | Generate a short summary of any item |
-| **Explain This Code** | Plain-English explanation of a snippet |
-| **Prompt Optimizer** | Rewrite and improve AI prompts |
+| Feature               | Description                                     |
+| --------------------- | ----------------------------------------------- |
+| **Auto-tag**          | Suggest relevant tags for an item automatically |
+| **AI Summary**        | Generate a short summary of any item            |
+| **Explain This Code** | Plain-English explanation of a snippet          |
+| **Prompt Optimizer**  | Rewrite and improve AI prompts                  |
 
 > 🧪 **Dev Note**: During development, all users have access to all features regardless of `isPro`.
 
@@ -299,15 +300,15 @@ Full-text search across:
 
 ## Item Types Reference
 
-| Type | Slug | Color | Icon | Content Type |
-|---|---|---|---|---|
-| Snippet | `snippets` | `#3b82f6` ![blue](https://via.placeholder.com/12/3b82f6/3b82f6.png) | `Code` | TEXT |
-| Prompt | `prompts` | `#8b5cf6` ![purple](https://via.placeholder.com/12/8b5cf6/8b5cf6.png) | `Sparkles` | TEXT |
-| Command | `commands` | `#f97316` ![orange](https://via.placeholder.com/12/f97316/f97316.png) | `Terminal` | TEXT |
-| Note | `notes` | `#fde047` ![yellow](https://via.placeholder.com/12/fde047/fde047.png) | `StickyNote` | TEXT |
-| File | `files` | `#6b7280` ![gray](https://via.placeholder.com/12/6b7280/6b7280.png) | `File` | FILE |
-| Image | `images` | `#ec4899` ![pink](https://via.placeholder.com/12/ec4899/ec4899.png) | `Image` | FILE |
-| Link | `links` | `#10b981` ![emerald](https://via.placeholder.com/12/10b981/10b981.png) | `Link` | URL |
+| Type    | Slug       | Color                                                                  | Icon         | Content Type |
+| ------- | ---------- | ---------------------------------------------------------------------- | ------------ | ------------ |
+| Snippet | `snippets` | `#3b82f6` ![blue](https://via.placeholder.com/12/3b82f6/3b82f6.png)    | `Code`       | TEXT         |
+| Prompt  | `prompts`  | `#8b5cf6` ![purple](https://via.placeholder.com/12/8b5cf6/8b5cf6.png)  | `Sparkles`   | TEXT         |
+| Command | `commands` | `#f97316` ![orange](https://via.placeholder.com/12/f97316/f97316.png)  | `Terminal`   | TEXT         |
+| Note    | `notes`    | `#fde047` ![yellow](https://via.placeholder.com/12/fde047/fde047.png)  | `StickyNote` | TEXT         |
+| File    | `files`    | `#6b7280` ![gray](https://via.placeholder.com/12/6b7280/6b7280.png)    | `File`       | FILE         |
+| Image   | `images`   | `#ec4899` ![pink](https://via.placeholder.com/12/ec4899/ec4899.png)    | `Image`      | FILE         |
+| Link    | `links`    | `#10b981` ![emerald](https://via.placeholder.com/12/10b981/10b981.png) | `Link`       | URL          |
 
 Icons are from [Lucide React](https://lucide.dev/).
 
@@ -328,7 +329,7 @@ Icons are from [Lucide React](https://lucide.dev/).
 
 - Unlimited items & collections
 - File & Image uploads (via Cloudflare R2)
-- Custom item types *(future)*
+- Custom item types _(future)_
 - All AI features
 - Export data as JSON/ZIP
 - Priority support
@@ -345,6 +346,13 @@ Payments handled via **Stripe** (`stripeCustomerId`, `stripeSubscriptionId` on U
 - Inspired by: [Notion](https://notion.so), [Linear](https://linear.app), [Raycast](https://raycast.com)
 - Clean typography, generous whitespace, subtle borders and shadows
 - Syntax highlighting on all code blocks
+
+### Screenshots
+
+Refer to the screenshots below as a base for the dashboard ui. It does not have to be exact. Use it as a reference
+
+-@context/screenshots/dashboard-ui-draw.png
+-@context/screenshots/dashboard-ui.png
 
 ### Layout
 
@@ -442,19 +450,19 @@ Collection cards use a **background tint** based on the most common item type in
 
 ## Key Decisions & Notes
 
-| Decision | Rationale |
-|---|---|
-| **Next.js API routes** over a separate backend | One repo, less overhead, simpler deployment |
-| **Neon (serverless Postgres)** | Scales to zero, generous free tier, pairs well with Prisma |
-| **Prisma migrations only** | Safer for production — never `db push` |
-| **NextAuth v5** | Handles both credentials and OAuth cleanly in Next.js App Router |
-| **Cloudflare R2** | S3-compatible, no egress fees, great for file/image storage |
-| **Dark mode default** | Developer audience prefers it; light mode available as a toggle |
-| **Drawer for items** | Fast access without leaving context — similar to Linear's detail pane |
-| **Items can be in multiple collections** | More flexible than a folder hierarchy; join table handles M:M |
-| **`isPro` flag on User** | Simple gate for features; Stripe manages subscription lifecycle |
-| **All features unlocked in dev** | Speeds up development; gate later with `isPro` checks |
+| Decision                                       | Rationale                                                             |
+| ---------------------------------------------- | --------------------------------------------------------------------- |
+| **Next.js API routes** over a separate backend | One repo, less overhead, simpler deployment                           |
+| **Neon (serverless Postgres)**                 | Scales to zero, generous free tier, pairs well with Prisma            |
+| **Prisma migrations only**                     | Safer for production — never `db push`                                |
+| **NextAuth v5**                                | Handles both credentials and OAuth cleanly in Next.js App Router      |
+| **Cloudflare R2**                              | S3-compatible, no egress fees, great for file/image storage           |
+| **Dark mode default**                          | Developer audience prefers it; light mode available as a toggle       |
+| **Drawer for items**                           | Fast access without leaving context — similar to Linear's detail pane |
+| **Items can be in multiple collections**       | More flexible than a folder hierarchy; join table handles M:M         |
+| **`isPro` flag on User**                       | Simple gate for features; Stripe manages subscription lifecycle       |
+| **All features unlocked in dev**               | Speeds up development; gate later with `isPro` checks                 |
 
 ---
 
-*Last updated: March 2026*
+_Last updated: March 2026_
