@@ -1,27 +1,25 @@
 # Current Feature
 
-Dashboard UI Phase 1 — Initial dashboard layout with top bar, sidebar placeholder, and main area placeholder.
+<!-- Feature name and short description -->
 
 ## Status
 
-In progress
+Completed
 
 ## Goals
 
-- ShadCN UI initialization and components
-- ShadCN component installation
-- Dashboard route at /dashboard
-- Main dashboard layout and any global styles
-- Dark mode by default
-- Top bar with search and new item button (display only)
-- Placeholder for sidebar and main area (h2 with "Sidebar" and "Main")
+<!-- Goals and requirements -->
 
 ## Notes
 
-- Phase 1 of 3 for the dashboard UI layout
-- See context/features/dashboard-phase-1-spec.md for full spec
-- References: context/screenshots/dashboard-ui-main.png, src/lib/mock-data.ts
+<!-- Any extra notes -->
 
 ## History
 
 - 2026-03-20: Initial Next.js 16.2 and Tailwind CSS v4 setup with TypeScript
+- 2026-03-21: Dashboard UI Phase 1 completed
+  - ShadCN UI initialization and component installation
+  - Dashboard route at /dashboard
+  - Main dashboard layout and global styles with dark mode by default
+  - Top bar with search and new item button (display only)
+  - Placeholder for sidebar and main area
