@@ -4,12 +4,11 @@
 
 ## Status
 
-In Progress
+Completed
 
 ## Goals
 
-- Dashboard UI Phase 3: Main area with recent collections, pinned items, recent items, and stats cards
-- See @context/features/dashboard-phase-3-spec.md
+<!-- Goals and requirements -->
 
 ## Notes
 
@@ -32,3 +31,9 @@ In Progress
   - User avatar area at the bottom
   - Drawer icon (PanelLeft) to open/close sidebar
   - Sheet drawer on mobile view
+- 2026-03-22: Dashboard UI Phase 3 completed
+  - 4 stats cards for items, collections, favorite items, and favorite collections
+  - Collections grid with type icons, descriptions, and favorite indicators
+  - Pinned items section
+  - Recent items grid (10 items) with colored borders, tags, and content previews
+  - Refactored layout to server component with client DashboardShell
