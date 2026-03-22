@@ -4,11 +4,12 @@
 
 ## Status
 
-Completed
+In Progress
 
 ## Goals
 
-<!-- Goals and requirements -->
+- Dashboard UI Phase 3: Main area with recent collections, pinned items, recent items, and stats cards
+- See @context/features/dashboard-phase-3-spec.md
 
 ## Notes
 
