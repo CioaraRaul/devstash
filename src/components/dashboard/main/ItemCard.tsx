@@ -1,13 +1,11 @@
 import Link from "next/link";
 import { Pin, Star } from "lucide-react";
-import { getItemTypeBySlug } from "@/lib/data-helpers";
 import { ITEM_TYPE_ICONS } from "@/lib/icons";
 import { Badge } from "@/components/ui/badge";
 import type { ItemCardProps } from "@/types/dashboard";
 
 export function ItemCard({ item }: ItemCardProps) {
-  const itemType = getItemTypeBySlug(item.typeSlug);
-  const Icon = itemType ? ITEM_TYPE_ICONS[itemType.icon] : null;
+  const Icon = ITEM_TYPE_ICONS[item.typeIcon] ?? null;
 
   return (
     <Link
@@ -16,7 +14,7 @@ export function ItemCard({ item }: ItemCardProps) {
     >
       <div
         className="w-1 shrink-0 rounded-l-lg"
-        style={{ backgroundColor: itemType?.color }}
+        style={{ backgroundColor: item.typeColor }}
       />
       <div className="flex min-w-0 flex-1 flex-col p-4">
         <div className="flex items-start justify-between gap-2">
@@ -24,7 +22,7 @@ export function ItemCard({ item }: ItemCardProps) {
             {Icon && (
               <Icon
                 className="h-4 w-4 shrink-0"
-                style={{ color: itemType?.color }}
+                style={{ color: item.typeColor }}
               />
             )}
             <h3 className="truncate font-medium">{item.title}</h3>

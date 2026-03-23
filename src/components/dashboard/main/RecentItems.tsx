@@ -1,9 +1,7 @@
-import { getRecentItems } from "@/lib/data-helpers";
 import { ItemCard } from "./ItemCard";
+import type { ItemListProps } from "@/types/dashboard";
 
-export function RecentItems() {
-  const items = getRecentItems(10);
-
+export function RecentItems({ items }: ItemListProps) {
   return (
     <section>
       <div className="mb-4 flex items-center justify-between">

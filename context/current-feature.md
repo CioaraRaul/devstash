@@ -16,6 +16,13 @@ Completed
 
 ## History
 
+- 2026-03-23: Dashboard items real data completed
+  - Created src/lib/db/items.ts with getPinnedItems() and getRecentItems() Prisma queries
+  - Replaced mock data with real Neon DB data for pinned and recent items
+  - Item card icon/border derived from item type via DashboardItem shape
+  - Tags fetched from DB and displayed on item cards
+  - Pinned items section hidden when no pinned items exist
+
 - 2026-03-23: Dashboard collections real data completed
   - Created src/lib/db/collections.ts with Prisma queries
   - Replaced mock data with real Neon DB data for collections grid and stats

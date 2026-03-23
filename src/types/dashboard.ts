@@ -19,5 +19,9 @@ export interface StatConfig {
 }
 
 export interface ItemCardProps {
-  item: import("@/lib/mock-data").Item;
+  item: import("@/lib/db/items").DashboardItem;
+}
+
+export interface ItemListProps {
+  items: import("@/lib/db/items").DashboardItem[];
 }

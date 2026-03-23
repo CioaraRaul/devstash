@@ -7,13 +7,17 @@ import {
   getCollectionStats,
   getItemStats,
 } from "@/lib/db/collections";
+import { getPinnedItems, getRecentItems } from "@/lib/db/items";
 
 export default async function DashboardPage() {
-  const [collections, collectionStats, itemStats] = await Promise.all([
-    getAllCollections(),
-    getCollectionStats(),
-    getItemStats(),
-  ]);
+  const [collections, collectionStats, itemStats, pinnedItems, recentItems] =
+    await Promise.all([
+      getAllCollections(),
+      getCollectionStats(),
+      getItemStats(),
+      getPinnedItems(),
+      getRecentItems(10),
+    ]);
 
   const stats = { ...itemStats, ...collectionStats };
 
@@ -21,8 +25,8 @@ export default async function DashboardPage() {
     <div className="flex flex-col gap-8">
       <StatsCards stats={stats} />
       <CollectionsGrid collections={collections} />
-      <PinnedItems />
-      <RecentItems />
+      <PinnedItems items={pinnedItems} />
+      <RecentItems items={recentItems} />
     </div>
   );
 }

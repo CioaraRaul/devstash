@@ -1,8 +1,7 @@
-import { getPinnedItems } from "@/lib/data-helpers";
 import { ItemCard } from "./ItemCard";
+import type { ItemListProps } from "@/types/dashboard";
 
-export function PinnedItems() {
-  const items = getPinnedItems();
+export function PinnedItems({ items }: ItemListProps) {
   if (items.length === 0) return null;
 
   return (
