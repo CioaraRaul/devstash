@@ -4,11 +4,16 @@
 
 ## Status
 
-Completed
+In Progress
 
 ## Goals
 
-<!-- Goals and requirements -->
+- Set up Prisma ORM (v7) with Neon PostgreSQL (serverless)
+- Create initial schema based on data models in project-overview.md
+- Include NextAuth models (Account, Session, VerificationToken)
+- Add appropriate indexes and cascade deletes
+- Use migrations (never push directly unless specified)
+- Configure development and production database branches
 
 ## Notes
 
@@ -16,6 +21,7 @@ Completed
 
 ## History
 
+- 2026-03-22: Prisma + Neon PostgreSQL setup started
 - 2026-03-20: Initial Next.js 16.2 and Tailwind CSS v4 setup with TypeScript
 - 2026-03-21: Dashboard UI Phase 1 completed
   - ShadCN UI initialization and component installation
