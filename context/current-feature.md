@@ -16,6 +16,12 @@ Completed
 
 ## History
 
+- 2026-03-23: Dashboard collections real data completed
+  - Created src/lib/db/collections.ts with Prisma queries
+  - Replaced mock data with real Neon DB data for collections grid and stats
+  - Collection card border color derived from most-used content type
+  - Small type icons displayed per collection
+  - Stats cards now show real database counts
 - 2026-03-23: Seed data completed
   - Created seed script (`prisma/seed.ts`)
   - Demo user (demo@devstash.io) with bcryptjs password hash

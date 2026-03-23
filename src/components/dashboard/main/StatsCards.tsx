@@ -1,9 +1,7 @@
-import { getStats } from "@/lib/data-helpers";
 import { STAT_CONFIG } from "@/lib/constants";
+import type { Stats } from "@/types/dashboard";
 
-export function StatsCards() {
-  const stats = getStats();
-
+export function StatsCards({ stats }: { stats: Stats }) {
   return (
     <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
       {STAT_CONFIG.map(({ key, label, icon: Icon, color }) => (

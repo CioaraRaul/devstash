@@ -4,8 +4,15 @@ export interface TopBarProps {
   onToggleSidebar: () => void;
 }
 
+export type Stats = {
+  totalItems: number;
+  totalCollections: number;
+  favoriteItems: number;
+  favoriteCollections: number;
+};
+
 export interface StatConfig {
-  key: "totalItems" | "totalCollections" | "favoriteItems" | "favoriteCollections";
+  key: keyof Stats;
   label: string;
   icon: LucideIcon;
   color: string;
