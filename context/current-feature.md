@@ -1,60 +1,20 @@
-# Codebase Audit Quick Wins
+# Current Feature
 
-Clean up issues found during the 2026-03-24 codebase audit.
+<!-- Feature name and short description -->
 
 ## Status
 
-In Progress
+Completed
 
 ## Goals
 
-- Delete dead `data-helpers.ts` and add TODO for mock user replacement
-- Add `userId` filter to all Prisma queries for data isolation
-- Fix PRO badge slug mismatch in SidebarTypes
-- Fix "All Items" heading mismatch in RecentItems
-- Remove redundant `useCallback` in DashboardShell
-- Add `DATABASE_URL` guard in prisma.ts
-- Extract shared dominant-color helper to reduce duplication
+<!-- Next feature goals go here -->
 
 ## Notes
 
 <!-- Any extra notes -->
 
 ---
-
-## Quick Wins (From Codebase Audit — 2026-03-24)
-
-### QW-1: Remove dead `data-helpers.ts` and consolidate mock data usage
-**Files:** `src/lib/data-helpers.ts`, `src/lib/mock-data.ts`
-**Issue:** `data-helpers.ts` contains helper functions that all operate on mock data (never called from any real page). `mock-data.ts` is still imported by `SidebarUser.tsx` for the user's name/email display.
-**Tasks:**
-- [ ] Delete `src/lib/data-helpers.ts` (all functions are dead code — real DB functions exist in `src/lib/db/`)
-- [ ] Replace `mockUser` import in `src/components/dashboard/sidebar/SidebarUser.tsx` with real session data once auth is wired up, or add a TODO comment so it's not missed
-
-### QW-2: Fix missing `userId` filter in all Prisma queries (data isolation)
-**Files:** `src/lib/db/collections.ts` (lines 4, 57-59, 65-68), `src/lib/db/items.ts` (lines 4-12, 16-24), `src/lib/db/sidebar.ts` (lines 3-18, 25-34)
-**Issue:** Every query fetches ALL rows regardless of user. `getAllCollections()`, `getPinnedItems()`, `getRecentItems()`, `getItemTypesWithCounts()`, `getSidebarCollections()`, `getCollectionStats()`, `getItemStats()` have no `where: { userId: ... }` clause. When multiple users exist, every user sees every other user's data.
-**Tasks:**
-- [ ] Add `where: { userId }` to every Prisma query in `src/lib/db/collections.ts`, `src/lib/db/items.ts`, and `src/lib/db/sidebar.ts`
-- [ ] Thread the `userId` parameter down from the session (once auth is wired up) or from a shared server-side session helper
-
-### QW-3: Fix `PRO_TYPE_SLUGS` slug mismatch in `SidebarTypes.tsx`
-**File:** `src/components/dashboard/sidebar/SidebarTypes.tsx` (line 6)
-**Issue:** `PRO_TYPE_SLUGS` is defined as `new Set(["file", "image"])` but the actual slugs seeded into the DB (and used in links) are `"files"` and `"images"` (plural). The PRO badge never appears because the slug check never matches.
-**Tasks:**
-- [ ] Change line 6 to `const PRO_TYPE_SLUGS = new Set(["files", "images"]);`
-
-### QW-4: Fix type label pluralization in `SidebarTypes.tsx`
-**File:** `src/components/dashboard/sidebar/SidebarTypes.tsx` (line 25)
-**Issue:** The label is rendered as `{type.label}s` (appending a hard-coded "s"). The DB stores labels like "Snippet", "Link", etc. This produces "Snippets", "Links" correctly but will break for any label ending in a vowel or irregular plural if custom types are added later.
-**Tasks:**
-- [ ] Store the plural form in the DB/seed (`labels` column or a separate `pluralLabel` field), or use a proper pluralization utility, rather than naively appending "s"
-
-### QW-5: Inconsistent `useCallback` import in `DashboardShell.tsx`
-**File:** `src/components/dashboard/DashboardShell.tsx` (line 3)
-**Issue:** `useCallback` is imported and used to wrap `toggleSidebar`. The React Compiler (enabled in this project) handles memoization automatically, making this redundant. The import adds noise.
-**Tasks:**
-- [ ] Remove `useCallback` import and unwrap `toggleSidebar` to a plain function: `const toggleSidebar = () => setSidebarOpen((prev) => !prev);`
 
 ## History
 
@@ -110,3 +70,12 @@ In Progress
   - Added PRO badge (ShadCN Badge, outline variant) to Files and Images types in sidebar
   - Subtle styling: small height, tiny text, muted color
   - PRO_TYPE_SLUGS Set for easy extensibility
+- 2026-03-24: Codebase Audit Quick Wins completed
+  - Deleted dead data-helpers.ts and mock-data.ts (248 lines removed)
+  - Added userId filter to all 7 Prisma query functions for data isolation
+  - Replaced mock user in SidebarUser with real DB user data via props
+  - Fixed PRO badge slug mismatch (file/image → files/images)
+  - Fixed "All Items" → "Recent Items" heading in RecentItems
+  - Removed redundant useCallback in DashboardShell (React Compiler)
+  - Added DATABASE_URL null guard in prisma.ts
+  - Extracted shared computeDominantColor helper to db/utils.ts
