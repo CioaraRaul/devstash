@@ -25,3 +25,22 @@ export interface ItemCardProps {
 export interface ItemListProps {
   items: import("@/lib/db/items").DashboardItem[];
 }
+
+export interface SidebarTypesProps {
+  itemTypes: import("@/lib/db/sidebar").SidebarItemType[];
+}
+
+export interface SidebarCollectionsProps {
+  collections: import("@/lib/db/sidebar").SidebarCollection[];
+}
+
+export interface SidebarContentProps {
+  itemTypes: import("@/lib/db/sidebar").SidebarItemType[];
+  collections: import("@/lib/db/sidebar").SidebarCollection[];
+}
+
+export interface DashboardShellProps {
+  children: React.ReactNode;
+  itemTypes: import("@/lib/db/sidebar").SidebarItemType[];
+  collections: import("@/lib/db/sidebar").SidebarCollection[];
+}

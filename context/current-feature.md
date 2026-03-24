@@ -16,27 +16,6 @@ Completed
 
 ## History
 
-- 2026-03-23: Dashboard items real data completed
-  - Created src/lib/db/items.ts with getPinnedItems() and getRecentItems() Prisma queries
-  - Replaced mock data with real Neon DB data for pinned and recent items
-  - Item card icon/border derived from item type via DashboardItem shape
-  - Tags fetched from DB and displayed on item cards
-  - Pinned items section hidden when no pinned items exist
-
-- 2026-03-23: Dashboard collections real data completed
-  - Created src/lib/db/collections.ts with Prisma queries
-  - Replaced mock data with real Neon DB data for collections grid and stats
-  - Collection card border color derived from most-used content type
-  - Small type icons displayed per collection
-  - Stats cards now show real database counts
-- 2026-03-23: Seed data completed
-  - Created seed script (`prisma/seed.ts`)
-  - Demo user (demo@devstash.io) with bcryptjs password hash
-  - 7 system item types with Lucide icons and colors
-  - 15 tags across all categories
-  - 5 collections: React Patterns, AI Workflows, DevOps, Terminal Commands, Design Resources
-  - 18 items total (3 snippets, 3 prompts, 1 snippet, 1 command, 2 links, 4 commands, 4 links)
-- 2026-03-22: Prisma + Neon PostgreSQL setup completed
 - 2026-03-20: Initial Next.js 16.2 and Tailwind CSS v4 setup with TypeScript
 - 2026-03-21: Dashboard UI Phase 1 completed
   - ShadCN UI initialization and component installation
@@ -58,3 +37,30 @@ Completed
   - Pinned items section
   - Recent items grid (10 items) with colored borders, tags, and content previews
   - Refactored layout to server component with client DashboardShell
+- 2026-03-22: Prisma + Neon PostgreSQL setup completed
+- 2026-03-23: Seed data completed
+  - Created seed script (`prisma/seed.ts`)
+  - Demo user (demo@devstash.io) with bcryptjs password hash
+  - 7 system item types with Lucide icons and colors
+  - 15 tags across all categories
+  - 5 collections: React Patterns, AI Workflows, DevOps, Terminal Commands, Design Resources
+  - 18 items total (3 snippets, 3 prompts, 1 snippet, 1 command, 2 links, 4 commands, 4 links)
+- 2026-03-23: Dashboard collections real data completed
+  - Created src/lib/db/collections.ts with Prisma queries
+  - Replaced mock data with real Neon DB data for collections grid and stats
+  - Collection card border color derived from most-used content type
+  - Small type icons displayed per collection
+  - Stats cards now show real database counts
+- 2026-03-23: Dashboard items real data completed
+  - Created src/lib/db/items.ts with getPinnedItems() and getRecentItems() Prisma queries
+  - Replaced mock data with real Neon DB data for pinned and recent items
+  - Item card icon/border derived from item type via DashboardItem shape
+  - Tags fetched from DB and displayed on item cards
+  - Pinned items section hidden when no pinned items exist
+- 2026-03-24: Stats sidebar real data completed
+  - Created src/lib/db/sidebar.ts with getItemTypesWithCounts() and getSidebarCollections()
+  - Sidebar types now show real DB item types with counts, linking to /items/[slug]
+  - Favorite collections display star icons, recent collections show colored circle (dominant type color)
+  - Added "View all collections" link under collections list
+  - Data flows from async layout → DashboardShell → SidebarContent via props
+  - Added sidebar interfaces to src/types/dashboard.ts

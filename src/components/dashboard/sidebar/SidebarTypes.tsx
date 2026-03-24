@@ -1,18 +1,16 @@
 import Link from "next/link";
-import { mockItemTypes } from "@/lib/mock-data";
 import { ITEM_TYPE_ICONS } from "@/lib/icons";
-import { getItemCountByType } from "@/lib/data-helpers";
+import type { SidebarTypesProps } from "@/types/dashboard";
 
-export function SidebarTypes() {
+export function SidebarTypes({ itemTypes }: SidebarTypesProps) {
   return (
     <div className="mb-4">
       <p className="mb-2 px-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
         Types
       </p>
       <nav className="flex flex-col gap-0.5">
-        {mockItemTypes.map((type) => {
+        {itemTypes.map((type) => {
           const Icon = ITEM_TYPE_ICONS[type.icon];
-          const count = getItemCountByType(type.slug);
           return (
             <Link
               key={type.id}
@@ -23,7 +21,7 @@ export function SidebarTypes() {
                 {Icon && <Icon className="h-4 w-4" style={{ color: type.color }} />}
                 <span>{type.label}s</span>
               </span>
-              <span className="text-xs text-muted-foreground">{count}</span>
+              <span className="text-xs text-muted-foreground">{type.count}</span>
             </Link>
           );
         })}

@@ -9,8 +9,9 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { useMediaQuery } from "@/hooks/use-media-query";
+import type { DashboardShellProps } from "@/types/dashboard";
 
-export function DashboardShell({ children }: { children: React.ReactNode }) {
+export function DashboardShell({ children, itemTypes, collections }: DashboardShellProps) {
   const isMobile = useMediaQuery("(max-width: 768px)");
   const [sidebarOpen, setSidebarOpen] = useState(!isMobile);
 
@@ -26,13 +27,13 @@ export function DashboardShell({ children }: { children: React.ReactNode }) {
           <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
             <SheetContent side="left" className="w-64 p-0">
               <SheetTitle className="sr-only">Navigation</SheetTitle>
-              <SidebarContent />
+              <SidebarContent itemTypes={itemTypes} collections={collections} />
             </SheetContent>
           </Sheet>
         ) : (
           sidebarOpen && (
             <aside className="w-64 shrink-0 border-r border-border bg-sidebar">
-              <SidebarContent />
+              <SidebarContent itemTypes={itemTypes} collections={collections} />
             </aside>
           )
         )}
