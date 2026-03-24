@@ -1,9 +1,23 @@
 import { prisma } from "@/lib/prisma";
+import { computeDominantColor } from "./utils";
 
-export async function getItemTypesWithCounts() {
+// TODO: Replace with real session user once auth is wired up
+export async function getCurrentUser() {
+  const user = await prisma.user.findFirst({
+    select: { id: true, name: true, email: true, image: true },
+  });
+
+  return user
+    ? { id: user.id, name: user.name ?? "User", email: user.email, image: user.image }
+    : { id: "", name: "DevStash User", email: "user@devstash.io", image: null };
+}
+
+export type SidebarUser = Awaited<ReturnType<typeof getCurrentUser>>;
+
+export async function getItemTypesWithCounts(userId: string) {
   const types = await prisma.itemType.findMany({
     include: {
-      _count: { select: { items: true } },
+      _count: { select: { items: { where: { userId } } } },
     },
     orderBy: { slug: "asc" },
   });
@@ -22,8 +36,9 @@ export type SidebarItemType = Awaited<
   ReturnType<typeof getItemTypesWithCounts>
 >[number];
 
-export async function getSidebarCollections() {
+export async function getSidebarCollections(userId: string) {
   const collections = await prisma.collection.findMany({
+    where: { userId },
     include: {
       items: {
         include: {
@@ -36,29 +51,12 @@ export async function getSidebarCollections() {
 
   return collections.map((collection) => {
     const itemTypes = collection.items.map((ci) => ci.item.type);
-    const typeCounts = new Map<string, { count: number; color: string }>();
-    for (const type of itemTypes) {
-      const existing = typeCounts.get(type.slug);
-      typeCounts.set(type.slug, {
-        count: (existing?.count ?? 0) + 1,
-        color: type.color,
-      });
-    }
-
-    let dominantColor = "";
-    let maxCount = 0;
-    for (const [, { count, color }] of typeCounts) {
-      if (count > maxCount) {
-        maxCount = count;
-        dominantColor = color;
-      }
-    }
 
     return {
       id: collection.id,
       name: collection.name,
       isFavorite: collection.isFavorite,
-      dominantColor,
+      dominantColor: computeDominantColor(itemTypes),
     };
   });
 }

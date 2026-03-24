@@ -8,15 +8,17 @@ import {
   getItemStats,
 } from "@/lib/db/collections";
 import { getPinnedItems, getRecentItems } from "@/lib/db/items";
+import { getCurrentUser } from "@/lib/db/sidebar";
 
 export default async function DashboardPage() {
+  const user = await getCurrentUser();
   const [collections, collectionStats, itemStats, pinnedItems, recentItems] =
     await Promise.all([
-      getAllCollections(),
-      getCollectionStats(),
-      getItemStats(),
-      getPinnedItems(),
-      getRecentItems(10),
+      getAllCollections(user.id),
+      getCollectionStats(user.id),
+      getItemStats(user.id),
+      getPinnedItems(user.id),
+      getRecentItems(user.id, 10),
     ]);
 
   const stats = { ...itemStats, ...collectionStats };

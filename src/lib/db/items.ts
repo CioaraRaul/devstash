@@ -1,8 +1,8 @@
 import { prisma } from "@/lib/prisma";
 
-export async function getPinnedItems() {
+export async function getPinnedItems(userId: string) {
   const items = await prisma.item.findMany({
-    where: { isPinned: true },
+    where: { userId, isPinned: true },
     include: {
       type: true,
       tags: { include: { tag: true } },
@@ -13,8 +13,9 @@ export async function getPinnedItems() {
   return items.map(formatItem);
 }
 
-export async function getRecentItems(limit = 10) {
+export async function getRecentItems(userId: string, limit = 10) {
   const items = await prisma.item.findMany({
+    where: { userId },
     include: {
       type: true,
       tags: { include: { tag: true } },

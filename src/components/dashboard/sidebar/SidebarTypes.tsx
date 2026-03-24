@@ -3,7 +3,7 @@ import { ITEM_TYPE_ICONS } from "@/lib/icons";
 import { Badge } from "@/components/ui/badge";
 import type { SidebarTypesProps } from "@/types/dashboard";
 
-const PRO_TYPE_SLUGS = new Set(["file", "image"]);
+const PRO_TYPE_SLUGS = new Set(["files", "images"]);
 
 export function SidebarTypes({ itemTypes }: SidebarTypesProps) {
   return (

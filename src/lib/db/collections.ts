@@ -1,7 +1,9 @@
 import { prisma } from "@/lib/prisma";
+import { computeDominantColor } from "./utils";
 
-export async function getAllCollections() {
+export async function getAllCollections(userId: string) {
   const collections = await prisma.collection.findMany({
+    where: { userId },
     include: {
       items: {
         include: {
@@ -18,24 +20,9 @@ export async function getAllCollections() {
 
   return collections.map((collection) => {
     const itemTypes = collection.items.map((ci) => ci.item.type);
-    const typeCounts = new Map<string, number>();
-    for (const type of itemTypes) {
-      typeCounts.set(type.slug, (typeCounts.get(type.slug) ?? 0) + 1);
-    }
-
     const uniqueTypes = [
       ...new Map(itemTypes.map((t) => [t.slug, t])).values(),
     ];
-
-    let dominantColor = "";
-    let maxCount = 0;
-    for (const [slug, count] of typeCounts) {
-      if (count > maxCount) {
-        maxCount = count;
-        dominantColor =
-          uniqueTypes.find((t) => t.slug === slug)?.color ?? "";
-      }
-    }
 
     return {
       id: collection.id,
@@ -43,7 +30,7 @@ export async function getAllCollections() {
       description: collection.description,
       isFavorite: collection.isFavorite,
       itemCount: collection.items.length,
-      dominantColor,
+      dominantColor: computeDominantColor(itemTypes),
       types: uniqueTypes.map((t) => ({
         slug: t.slug,
         icon: t.icon,
@@ -53,19 +40,19 @@ export async function getAllCollections() {
   });
 }
 
-export async function getCollectionStats() {
+export async function getCollectionStats(userId: string) {
   const [totalCollections, favoriteCollections] = await Promise.all([
-    prisma.collection.count(),
-    prisma.collection.count({ where: { isFavorite: true } }),
+    prisma.collection.count({ where: { userId } }),
+    prisma.collection.count({ where: { userId, isFavorite: true } }),
   ]);
 
   return { totalCollections, favoriteCollections };
 }
 
-export async function getItemStats() {
+export async function getItemStats(userId: string) {
   const [totalItems, favoriteItems] = await Promise.all([
-    prisma.item.count(),
-    prisma.item.count({ where: { isFavorite: true } }),
+    prisma.item.count({ where: { userId } }),
+    prisma.item.count({ where: { userId, isFavorite: true } }),
   ]);
 
   return { totalItems, favoriteItems };

@@ -1,8 +1,8 @@
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { mockUser } from "@/lib/mock-data";
+import type { SidebarUserProps } from "@/types/dashboard";
 
-export function SidebarUser() {
-  const initials = mockUser.name
+export function SidebarUser({ user }: SidebarUserProps) {
+  const initials = user.name
     .split(" ")
     .map((n) => n[0])
     .join("");
@@ -17,10 +17,10 @@ export function SidebarUser() {
         </Avatar>
         <div className="flex flex-col">
           <span className="text-sm font-medium text-sidebar-foreground">
-            {mockUser.name}
+            {user.name}
           </span>
           <span className="text-xs text-muted-foreground">
-            {mockUser.email}
+            {user.email}
           </span>
         </div>
       </div>

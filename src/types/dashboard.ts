@@ -34,13 +34,19 @@ export interface SidebarCollectionsProps {
   collections: import("@/lib/db/sidebar").SidebarCollection[];
 }
 
+export interface SidebarUserProps {
+  user: import("@/lib/db/sidebar").SidebarUser;
+}
+
 export interface SidebarContentProps {
   itemTypes: import("@/lib/db/sidebar").SidebarItemType[];
   collections: import("@/lib/db/sidebar").SidebarCollection[];
+  user: import("@/lib/db/sidebar").SidebarUser;
 }
 
 export interface DashboardShellProps {
   children: React.ReactNode;
   itemTypes: import("@/lib/db/sidebar").SidebarItemType[];
   collections: import("@/lib/db/sidebar").SidebarCollection[];
+  user: import("@/lib/db/sidebar").SidebarUser;
 }

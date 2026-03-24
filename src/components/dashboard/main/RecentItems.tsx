@@ -5,7 +5,7 @@ export function RecentItems({ items }: ItemListProps) {
   return (
     <section>
       <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-lg font-semibold">All Items</h2>
+        <h2 className="text-lg font-semibold">Recent Items</h2>
         <span className="text-sm text-muted-foreground">
           {items.length} items
         </span>
