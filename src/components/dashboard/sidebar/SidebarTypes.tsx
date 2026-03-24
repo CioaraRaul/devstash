@@ -1,6 +1,9 @@
 import Link from "next/link";
 import { ITEM_TYPE_ICONS } from "@/lib/icons";
+import { Badge } from "@/components/ui/badge";
 import type { SidebarTypesProps } from "@/types/dashboard";
+
+const PRO_TYPE_SLUGS = new Set(["file", "image"]);
 
 export function SidebarTypes({ itemTypes }: SidebarTypesProps) {
   return (
@@ -21,7 +24,14 @@ export function SidebarTypes({ itemTypes }: SidebarTypesProps) {
                 {Icon && <Icon className="h-4 w-4" style={{ color: type.color }} />}
                 <span>{type.label}s</span>
               </span>
-              <span className="text-xs text-muted-foreground">{type.count}</span>
+              <span className="flex items-center gap-1.5">
+                {PRO_TYPE_SLUGS.has(type.slug) && (
+                  <Badge variant="outline" className="h-4 px-1 text-[10px] font-semibold tracking-wide text-muted-foreground">
+                    PRO
+                  </Badge>
+                )}
+                <span className="text-xs text-muted-foreground">{type.count}</span>
+              </span>
             </Link>
           );
         })}
