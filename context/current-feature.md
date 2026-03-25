@@ -1,26 +1,12 @@
-# Current Feature: Auth Credentials - Email/Password Provider
+# Current Feature
 
 ## Status
 
-In Progress
+Not Started
 
 ## Goals
 
-- Add Credentials provider for email/password authentication
-- Add password field to User model (migration if needed)
-- Update auth.config.ts with Credentials provider placeholder
-- Update auth.ts to override Credentials with bcrypt validation
-- Create registration API route at /api/auth/register (name, email, password, confirmPassword)
-- Validate passwords match, check existing user, hash with bcryptjs
-- Maintain existing GitHub OAuth functionality
-
 ## Notes
-
-- Uses bcryptjs (already installed)
-- Split pattern: auth.config.ts gets `authorize: () => null` placeholder, auth.ts overrides with real bcrypt logic
-- Registration endpoint: POST /api/auth/register
-- Test via curl, then /api/auth/signin, verify redirect to /dashboard
-- Spec: context/features/auth-phase-2-spec.md
 
 ---
 
@@ -95,3 +81,8 @@ In Progress
   - Session type augmentation with user.id (next-auth.d.ts)
   - API route handler at /api/auth/[...nextauth]
   - Auth phase 2 and 3 specs added to context/features/
+- 2026-03-25: Auth Credentials - Email/Password Provider completed
+  - Added password field to User model (Neon migration on development branch)
+  - Credentials provider in split pattern (placeholder in auth.config.ts, bcrypt validation in auth.ts)
+  - Registration API route at /api/auth/register with validation (match, duplicate, hash)
+  - Existing GitHub OAuth preserved
