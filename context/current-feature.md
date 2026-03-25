@@ -1,30 +1,12 @@
-# Current Feature: Auth Setup - NextAuth + GitHub Provider
-
-Set up NextAuth v5 with Prisma adapter and GitHub OAuth.
+# Current Feature
 
 ## Status
 
-In Progress
+Not Started
 
 ## Goals
 
-- Install NextAuth v5 (`next-auth@beta`) and `@auth/prisma-adapter`
-- Set up split auth config pattern for edge compatibility
-- Add GitHub OAuth provider
-- Protect `/dashboard/*` routes using Next.js 16 proxy
-- Redirect unauthenticated users to sign-in
-- Use NextAuth's default pages for testing
-
 ## Notes
-
-- Use `next-auth@beta` (not `@latest` which installs v4)
-- Proxy file must be at `src/proxy.ts` (same level as `app/`)
-- Use named export: `export const proxy = auth(...)` not default export
-- Use `session: { strategy: 'jwt' }` with split config pattern
-- Don't set custom `pages.signIn` — use NextAuth's default page
-- Use Context7 to verify newest config and conventions
-- Files to create: `src/auth.config.ts`, `src/auth.ts`, `src/app/api/auth/[...nextauth]/route.ts`, `src/proxy.ts`, `src/types/next-auth.d.ts`
-- Env vars needed: `AUTH_SECRET`, `AUTH_GITHUB_ID`, `AUTH_GITHUB_SECRET`
 
 ---
 
@@ -91,3 +73,11 @@ In Progress
   - Removed redundant useCallback in DashboardShell (React Compiler)
   - Added DATABASE_URL null guard in prisma.ts
   - Extracted shared computeDominantColor helper to db/utils.ts
+- 2026-03-25: Auth Setup - NextAuth + GitHub Provider completed
+  - NextAuth v5 (beta) with Prisma adapter and JWT session strategy
+  - Split auth config pattern (auth.config.ts + auth.ts) for edge compatibility
+  - GitHub OAuth provider
+  - Proxy-based route protection for /dashboard/* (src/proxy.ts)
+  - Session type augmentation with user.id (next-auth.d.ts)
+  - API route handler at /api/auth/[...nextauth]
+  - Auth phase 2 and 3 specs added to context/features/
