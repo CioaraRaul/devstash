@@ -18,6 +18,12 @@ Read the following to get the full context of the projectL
 - `npm run lint` — run ESLint
 - `npm start` — serve production build
 
+## Neon MCP
+
+- **Always use the `development` branch** when interacting with Neon MCP (database operations, queries, migrations, etc.)
+- **Never use the `main`/production branch** unless I explicitly say "production"
+- Project: DevStash (look up the project ID via Neon MCP if needed)
+
 ## Tech Stack
 
 - **Next.js 16.2** with App Router (React 19, React Compiler enabled)
